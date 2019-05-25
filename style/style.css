@@ -1,7 +1,24 @@
+@font-face {
+  font-family: "Starjedi", sans-serif;
+  src: url(fonts/Starjedi.ttf);
+  src: url(fonts/Starjhol.ttf); }
 body {
   margin: 0;
   background-color: black;
-  color: white; }
+  color: yellow;
+  font-family: "Starjhol", monospace; }
+
+.yodish-header {
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  text-align: center; }
+
+.yodish-header__logo {
+  position: relative;
+  animation: title infinite 2s;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease-in; }
 
 .star {
   position: absolute;
@@ -34,5 +51,10 @@ body {
   100% {
     right: 900px;
     bottom: 100px; } }
+@keyframes title {
+  0% {
+    top: 0px; }
+  100% {
+    top: 10px; } }
 
 /*# sourceMappingURL=style.css.map */
