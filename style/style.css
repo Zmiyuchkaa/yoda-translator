@@ -1,4 +1,38 @@
 body {
-  background-color: #6a7f5b; }
+  margin: 0;
+  background-color: black;
+  color: white; }
+
+.star {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: white; }
+
+.spaceship {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  z-index: 1;
+  animation: example infinite 10s;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease-out; }
+
+@keyframes example {
+  0% {
+    right: 50px;
+    bottom: 0px; }
+  25% {
+    right: 10px;
+    bottom: 80px; }
+  50% {
+    right: 200px;
+    bottom: 200px; }
+  75% {
+    right: 500px;
+    bottom: 80px; }
+  100% {
+    right: 900px;
+    bottom: 100px; } }
 
 /*# sourceMappingURL=style.css.map */
