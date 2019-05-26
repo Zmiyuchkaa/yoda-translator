@@ -7,33 +7,38 @@
   <title>Free Yodish Translator</title>
   <link rel="shortcut icon" href="images/yoda.png" type="image/x-icon">
   <link rel="stylesheet" href="style/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
+  
   <header class="yodish-header">
     <img src="images/logo.png" alt="" class="yodish-header__logo">
+    <section>
+      <h4>TRANSLATE FROM ENGLISH TO YODISH HERE, PADAWAN MY YOUNG YOU CAN</h4>
+      <h5 id="inspiration">FOR INSPIRATION JUST PRESS A BUTTON</h5>
+      <button class="yodish-header__button" id="button-history">VIEW SEARCH HISTORY</button>
+    </section>
     <section class="yodish-header__form">
       <form>
-        <input type="text" id="fname" name="firstname" placeholder="type any word" class="yodish-header__form__input">
+        <input type="text" id="fname" name="firstname" placeholder="enter anything" class="yodish-header__form__input">
         <button type="button" id="submit" value="Submit" class="yodish-header__form__button">SEARCH</button>
       </form>
     </section>
   </header>
   
   <main class="yodish-main">
-    <div id="history"></div>
+    <div id="history" class="yodish-main__container"></div>
     <div id="main" class="yodish-main__response"></div>
     <div id ='tips' class="yodish-main__tips">
-      <h3>Here are some most popular or fun Yoda quotes you could use to have fun</h3>
-      <ul>
-        <li>Luke, I am your father</li>
-        <li>Always pass on what you have learned</li>
-        <li>You must be careful when you look at the dark side</li>
-        <li>I sense much anger in him</li>
-        <li>I am, You are</li>
-        <li>Put away your weapons</li>
-        <li>Size does not matter.</li>
-        <li>It happens to every jedai sometimes</li>
+      <h3>Here are some most popular or fun Yoda quotes you could use to have fun:</h3>
+      <ul class="yodish-main__tips__examples">
+        <li class="yodish-main__tips__examples__each">Always pass on what you have learned</li>
+        <li class="yodish-main__tips__examples__each">You must be careful when you look at the dark side</li>
+        <li class="yodish-main__tips__examples__each">I sense much anger in him</li>
+        <li class="yodish-main__tips__examples__each">I am, You are</li>
+        <li class="yodish-main__tips__examples__each">Put away your weapons</li>
+        <li class="yodish-main__tips__examples__each">Size does not matter.</li>
       </ul>
       <div class="yodish-main__spaceship"><img src="images/ufo.png" alt="" class="spaceship"></div>
     </div>

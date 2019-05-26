@@ -1,23 +1,20 @@
 $yellow: #c3b935;
+$grey: #474746;
+$light-yellow: #d8d5ab;
 // вставить js spaceship run from наведение мышки
-@font-face {
-  font-family: "Starjedi", sans-serif;
-  src: url(fonts/Starjedi.ttf);
-  src: url(fonts/Starjhol.ttf);
 
-}
 
 body {
-  margin: 0;
   background-color: black;
   color:yellow;
-  font-family: "Starjhol", monospace;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
 }
 
 .yodish-header {
   margin-left: auto;
   margin-right: auto;
-  height: 300px;
+  height: 200px;
   text-align: center;
 }
 
@@ -26,6 +23,87 @@ body {
   animation: title infinite 2s;
   animation-direction: alternate-reverse;
   animation-timing-function: ease-in;
+  height: 120px;
+}
+
+.yodish-header__button {
+    background-color: transparent;
+    color: $yellow;
+    border: 1px solid $yellow;
+    height: 40px;
+    width: 250px;
+  &:hover {
+    border-color: $light-yellow;
+    color: $light-yellow;
+  }
+}
+
+.yodish-header__form {
+  margin-top: 100px;
+}
+
+.yodish-header__form__input {
+  border: none;
+  border-bottom: 1px solid $yellow;
+  background: transparent;
+  width: 33%;
+  color: #999998;
+}
+
+.yodish-header__form__button {
+  background-color: $yellow;
+  border: none;
+  padding: 3px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  color: $grey;
+  &:hover {
+    background-color: $light-yellow;
+  }
+} 
+
+.yodish-main__container {
+  display: block;
+  height: 200px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.yodish-main__response {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.yodish-main__tips {
+  margin: 200px auto 0px;
+  margin-right: auto;
+  text-align: center;
+}
+
+.yodish-main__tips__examples {
+  width: 90%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.yodish-main__tips__examples__each {
+  padding: 30px;
+}
+
+.history__title {
+  margin: 20px 0px;
+  text-align: center;
+}
+
+.history__p {
+  text-align: center;
+  padding-left: 30px;
 }
 
 .star {
