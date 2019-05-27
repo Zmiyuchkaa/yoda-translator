@@ -1,7 +1,9 @@
+// привести к нормальному стилю history
+
+
 $yellow: #c3b935;
 $grey: #474746;
 $light-yellow: #d8d5ab;
-// вставить js spaceship run from наведение мышки
 
 
 body {
@@ -39,7 +41,7 @@ body {
 }
 
 .yodish-header__form {
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 .yodish-header__form__input {
@@ -74,12 +76,13 @@ body {
 
 .yodish-main__response {
   text-align: center;
+  margin-top: 55px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .yodish-main__tips {
-  margin: 200px auto 0px;
+  margin: 150px auto 0px;
   margin-right: auto;
   text-align: center;
 }

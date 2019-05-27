@@ -1,9 +1,8 @@
 /*
 использование БЭМ
-вставить ссылки на tips
-сделать что-то с стилем historyRequests
 добавить комментарии к блокам
-прописать условие что если пустая строка - не пушай в историю поиска, и вообще пушай только если нажали на кнопку
+рефакторинг кода
+проверка на бесполезные стили
 */
 
 
@@ -26,27 +25,44 @@ document.getElementById("submit").onclick = () => {
 
 document.getElementById("button-history").onclick = () => {
   let text = document.getElementById("fname").value;
-  let historyRequests = JSON.parse(localStorage.getItem('history')); 
-  if (historyRequests === null) {
-    localStorage.setItem('history', JSON.stringify([text]))
-  } else { 
-      if (historyRequests.length > 5) {
-        historyRequests.shift();
+  if (text !== "") {
+    let historyRequests = JSON.parse(localStorage.getItem('history')); 
+    if (historyRequests === null) {
+      localStorage.setItem('history', JSON.stringify([text]))
+    } else { 
+        if (historyRequests.length > 5) {
+          historyRequests.shift();
+        }
+      historyRequests.push(text);
+      localStorage.setItem('history', JSON.stringify(historyRequests));
       }
-    historyRequests.push(text);
-    localStorage.setItem('history', JSON.stringify(historyRequests));
   }
+  
   let historyDiv = document.getElementById('history');
   let historyTitle = document.createElement("h4");
-  let historyP = document.createElement('p');
-  historyTitle.className = "history__title";
-  historyP.className = 'history__p'
-  historyP.innerHTML = JSON.parse(localStorage.getItem('history'));
   historyTitle.innerHTML = (`That's the last things users were looking for:`);
   historyDiv.appendChild(historyTitle);
-  historyDiv.appendChild(historyP);
+  historyTitle.className = "history__title";
+  
+  let historyArray = JSON.parse(localStorage.getItem('history'))
+  historyArray.forEach(story => {
+    let historyP = document.createElement('span');    
+    historyP.innerHTML = story;
+    historyP.className = 'history__p'
+    historyDiv.appendChild(historyP);
+  })
+  
   document.getElementById("inspiration").style.display = "none";
   document.getElementById("button-history").style.display = "none";
+}
+
+
+let tips = document.getElementsByClassName("yodish-main__tips__examples__each")
+for(let i =0; i < tips.length; i++) {
+  tips.item(i).onclick = elem => {
+    document.getElementById("fname").value = elem.target.innerHTML
+    document.getElementById("submit").click();
+  }
 }
 
   // Sets the number of stars we wish to display
@@ -70,3 +86,4 @@ function getRandomPosition() {
   var randomY = Math.floor(Math.random()*y);
   return [randomX,randomY];
 }
+
