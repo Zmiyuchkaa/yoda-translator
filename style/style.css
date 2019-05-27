@@ -50,9 +50,9 @@ body {
     background-color: #d8d5ab; }
 
 .yodish-main__container {
-  display: block;
+  display: flex;
   height: 200px;
-  width: 50%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto; }
 
@@ -77,13 +77,10 @@ body {
 .yodish-main__tips__examples__each {
   padding: 30px; }
 
-.history__title {
-  margin: 20px 0px;
-  text-align: center; }
-
 .history__p {
   text-align: center;
-  padding-left: 30px; }
+  padding-right: 20px;
+  height: 50px; }
 
 .star {
   position: absolute;

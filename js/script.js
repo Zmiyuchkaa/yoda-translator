@@ -38,12 +38,7 @@ document.getElementById("button-history").onclick = () => {
       }
   }
   
-  let historyDiv = document.getElementById('history');
-  let historyTitle = document.createElement("h4");
-  historyTitle.innerHTML = (`That's the last things users were looking for:`);
-  historyDiv.appendChild(historyTitle);
-  historyTitle.className = "history__title";
-  
+  let historyDiv = document.getElementById('history');  
   let historyArray = JSON.parse(localStorage.getItem('history'))
   historyArray.forEach(story => {
     let historyP = document.createElement('span');    
