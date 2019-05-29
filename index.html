@@ -12,35 +12,37 @@
 </head>
 <body>
   
-  <header class="yodish-header">
-    <img src="images/logo.png" alt="" class="yodish-header__logo">
+  <header class="header">
+    <img src="images/logo.png" alt="" class="header__logo">
     <section>
       <h4>TRANSLATE FROM ENGLISH TO YODISH HERE, PADAWAN MY YOUNG YOU CAN</h4>
       <h5 id="inspiration">FOR INSPIRATION JUST PRESS A BUTTON</h5>
-      <button class="yodish-header__button" id="button-history">VIEW SEARCH HISTORY</button>
+      <button class="header__button" id="button-history">VIEW SEARCH HISTORY</button>
     </section>
-    <section class="yodish-header__form">
+    <section class="header__form">
       <form>
-        <input type="text" id="fname" name="firstname" placeholder="enter anything" class="yodish-header__form__input">
-        <button type="button" id="submit" value="Submit" class="yodish-header__form__button">SEARCH</button>
+        <input type="text" id="input" name="firstname" placeholder="enter anything" class="header__form__input">
+        <button type="button" id="submit" value="Submit" class="header__form__button">SEARCH</button>
       </form>
     </section>
   </header>
   
-  <main class="yodish-main">
-    <div id="history" class="yodish-main__container"></div>
-    <div id="main" class="yodish-main__response"></div>
-    <div id ='tips' class="yodish-main__tips">
+  <main class="main">
+    <div id="history" class="main__history-container"></div>
+    <div id="response" class="main__response"></div>
+    <div id ='tips' class="main__quotes">
       <h3>Here are some most popular or fun Yoda quotes you could use to have fun:</h3>
-      <ul class="yodish-main__tips__examples">
-        <li id="tips_example" class="yodish-main__tips__examples__each">Always pass on what you have learned</li>
-        <li class="yodish-main__tips__examples__each">You must be careful when you look at the dark side</li>
-        <li class="yodish-main__tips__examples__each">I sense much anger in him</li>
-        <li class="yodish-main__tips__examples__each">I am, You are</li>
-        <li class="yodish-main__tips__examples__each">Put away your weapons</li>
-        <li class="yodish-main__tips__examples__each">Size does not matter.</li>
+      <ul class="main__quotes__container">
+        <li class="main__quotes__container__example">Always pass on what you have learned</li>
+        <li class="main__quotes__container__example">You must be careful when you look at the dark side</li>
+        <li class="main__quotes__container__example">I sense much anger in him</li>
+        <li class="main__quotes__container__example">I am, You are</li>
+        <li class="main__quotes__container__example">The less I know the better</li>
+        <li class="main__quotes__container__example">Size does not matter.</li>
       </ul>
-      <div class="yodish-main__spaceship"><img src="images/ufo.png" alt="" class="spaceship"></div>
+    </div>
+    <div class="main__spaceship">
+      <img src="images/ufo.png" alt="" class="main__spaceship__image">
     </div>
   </main>
 

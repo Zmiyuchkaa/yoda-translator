@@ -1,19 +1,44 @@
 /*
-использование БЭМ
-добавить комментарии к блокам
-рефакторинг кода
-проверка на бесполезные стили
+рефакторинг js
+если уже нажал кнопку view search history больше не сохраняет историю пока не обновишь страницу
 */
 
 
+// created a key-value in local storage, display it on screen by click a button
+document.getElementById("button-history").onclick = () => {
+  let text = document.getElementById("input").value;
+  if (text != "") {
+    let historyRequests = JSON.parse(localStorage.getItem('history')); 
+    if (historyRequests === null) {
+      localStorage.setItem('history', JSON.stringify([text]))
+    } else { 
+        if (historyRequests.length > 5) {
+          historyRequests.shift();
+        }
+      }
+      historyRequests.push(text);
+      localStorage.setItem('history', JSON.stringify(historyRequests));
+  }
+  let historyDiv = document.getElementById('history');  
+  let historyArray = JSON.parse(localStorage.getItem('history'))
+  historyArray.forEach(story => {
+    let historyP = document.createElement('span');    
+    historyP.innerHTML = story;
+    historyP.className = 'main__history-container__history-p'
+    historyDiv.appendChild(historyP);
+  })
+  document.getElementById("inspiration").style.display = "none";
+  document.getElementById("button-history").style.display = "none";
+}
+
+// connect to API by axios and show response by click on button
 document.getElementById("submit").onclick = () => {
-  let text = document.getElementById("fname").value;
-  document.getElementById("main").innerHTML = "";
-  document.getElementById("history").innerHTML = "";
+  let text = document.getElementById("input").value;
+  document.getElementById("response").innerHTML = "";
   document.getElementById("inspiration").innerHTML = "";
   axios.get(`https://cors-anywhere.herokuapp.com/http://yoda-api.appspot.com/api/v1/yodish?text=${text}`)
   .then(response => {
-    let div = document.getElementById('main');
+    let div = document.getElementById('response');
     let createResponse = document.createElement("h2")
     let createTitle = document.createElement("p");
     div.appendChild(createTitle);
@@ -23,39 +48,11 @@ document.getElementById("submit").onclick = () => {
   })
 }
 
-document.getElementById("button-history").onclick = () => {
-  let text = document.getElementById("fname").value;
-  if (text !== "") {
-    let historyRequests = JSON.parse(localStorage.getItem('history')); 
-    if (historyRequests === null) {
-      localStorage.setItem('history', JSON.stringify([text]))
-    } else { 
-        if (historyRequests.length > 5) {
-          historyRequests.shift();
-        }
-      historyRequests.push(text);
-      localStorage.setItem('history', JSON.stringify(historyRequests));
-      }
-  }
-  
-  let historyDiv = document.getElementById('history');  
-  let historyArray = JSON.parse(localStorage.getItem('history'))
-  historyArray.forEach(story => {
-    let historyP = document.createElement('span');    
-    historyP.innerHTML = story;
-    historyP.className = 'history__p'
-    historyDiv.appendChild(historyP);
-  })
-  
-  document.getElementById("inspiration").style.display = "none";
-  document.getElementById("button-history").style.display = "none";
-}
-
-
-let tips = document.getElementsByClassName("yodish-main__tips__examples__each")
-for(let i =0; i < tips.length; i++) {
-  tips.item(i).onclick = elem => {
-    document.getElementById("fname").value = elem.target.innerHTML
+// show response by click on quotes
+let quotes = document.getElementsByClassName("main__quotes__container__example")
+for (let i = 0; i < quotes.length; i++) {
+  quotes.item(i).onclick = elem => {
+    document.getElementById("input").value = elem.target.innerHTML
     document.getElementById("submit").click();
   }
 }

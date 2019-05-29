@@ -4,83 +4,76 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300; }
 
-.yodish-header {
-  margin-left: auto;
-  margin-right: auto;
+.header {
   height: 200px;
   text-align: center; }
 
-.yodish-header__logo {
+.header__logo {
   position: relative;
   animation: title infinite 2s;
   animation-direction: alternate-reverse;
   animation-timing-function: ease-in;
   height: 120px; }
 
-.yodish-header__button {
+.header__button {
   background-color: transparent;
   color: #c3b935;
   border: 1px solid #c3b935;
   height: 40px;
   width: 250px; }
-  .yodish-header__button:hover {
+  .header__button:hover {
     border-color: #d8d5ab;
     color: #d8d5ab; }
 
-.yodish-header__form {
+.header__form {
   margin-top: 150px; }
 
-.yodish-header__form__input {
+.header__form__input {
   border: none;
   border-bottom: 1px solid #c3b935;
   background: transparent;
   width: 33%;
   color: #999998; }
 
-.yodish-header__form__button {
+.header__form__button {
   background-color: #c3b935;
   border: none;
   padding: 3px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
   font-size: 16px;
-  color: #474746; }
-  .yodish-header__form__button:hover {
+  font-weight: bold;
+  color: #222222; }
+  .header__form__button:hover {
     background-color: #d8d5ab; }
 
-.yodish-main__container {
-  display: flex;
+.main__history-container {
   height: 200px;
   width: 70%;
   margin-left: auto;
-  margin-right: auto; }
-
-.yodish-main__response {
-  text-align: center;
-  margin-top: 55px;
-  margin-left: auto;
-  margin-right: auto; }
-
-.yodish-main__tips {
-  margin: 150px auto 0px;
   margin-right: auto;
-  text-align: center; }
-
-.yodish-main__tips__examples {
-  width: 90%;
-  list-style-type: none;
   display: flex;
-  flex-direction: row;
   justify-content: center; }
 
-.yodish-main__tips__examples__each {
-  padding: 30px; }
-
-.history__p {
+.main__history-container__history-p {
   text-align: center;
   padding-right: 20px;
   height: 50px; }
+
+.main__response {
+  text-align: center;
+  margin-top: 55px; }
+
+.main__quotes {
+  margin: 150px auto 0px;
+  text-align: center; }
+
+.main__quotes__container {
+  width: 90%;
+  list-style-type: none;
+  display: flex;
+  justify-content: center; }
+
+.main__quotes__container__example {
+  padding: 30px; }
 
 .star {
   position: absolute;
@@ -88,16 +81,16 @@ body {
   height: 1px;
   background-color: white; }
 
-.spaceship {
+.main__spaceship__image {
   width: 100px;
   height: 100px;
   position: absolute;
   z-index: 1;
-  animation: example infinite 10s;
+  animation: spaceship infinite 10s;
   animation-direction: alternate-reverse;
   animation-timing-function: ease-out; }
 
-@keyframes example {
+@keyframes spaceship {
   0% {
     right: 50px;
     bottom: 0px; }
