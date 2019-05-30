@@ -33,7 +33,8 @@ body {
   border-bottom: 1px solid #c3b935;
   background: transparent;
   width: 33%;
-  color: #999998; }
+  color: #999998;
+  outline: none; }
 
 .header__form__button {
   background-color: #c3b935;
@@ -73,7 +74,8 @@ body {
   justify-content: center; }
 
 .main__quotes__container__example {
-  padding: 30px; }
+  padding: 30px;
+  cursor: pointer; }
 
 .star {
   position: absolute;

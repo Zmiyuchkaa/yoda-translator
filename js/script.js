@@ -1,25 +1,37 @@
-/*
-рефакторинг js
-если уже нажал кнопку view search history больше не сохраняет историю пока не обновишь страницу
-*/
-
-
-// created a key-value in local storage, display it on screen by click a button
-document.getElementById("button-history").onclick = () => {
-  let text = document.getElementById("input").value;
-  if (text != "") {
-    let historyRequests = JSON.parse(localStorage.getItem('history')); 
-    if (historyRequests === null) {
-      localStorage.setItem('history', JSON.stringify([text]))
-    } else { 
-        if (historyRequests.length > 5) {
-          historyRequests.shift();
-        }
-      }
-      historyRequests.push(text);
-      localStorage.setItem('history', JSON.stringify(historyRequests));
+// create history tracker
+function initHistory() {
+  if (localStorage.getItem('history') === null) {
+    localStorage.setItem('history', JSON.stringify([]));
   }
-  let historyDiv = document.getElementById('history');  
+}
+
+function isTextInHistory(text) {
+  let historyRequests = JSON.parse(localStorage.getItem('history')); 
+  return historyRequests.find( request => { 
+    return request === text
+  })
+}
+
+// saving history
+function saveToHistory(text) {
+  let historyRequests = JSON.parse(localStorage.getItem('history'));
+  // save just 5 latest search histories 
+  if (historyRequests.length > 5) {   
+    historyRequests.shift();
+  }
+  historyRequests.push(text);
+  localStorage.setItem('history', JSON.stringify(historyRequests));
+}
+
+initHistory();
+
+let historyIsShowing = false;
+function updateHistoryDiv() {
+  if (historyIsShowing === false) {
+    return
+  }
+  let historyDiv = document.getElementById('history'); 
+  historyDiv.innerHTML = ""; 
   let historyArray = JSON.parse(localStorage.getItem('history'))
   historyArray.forEach(story => {
     let historyP = document.createElement('span');    
@@ -27,6 +39,12 @@ document.getElementById("button-history").onclick = () => {
     historyP.className = 'main__history-container__history-p'
     historyDiv.appendChild(historyP);
   })
+}
+
+// created a key-value in local storage, display it on screen by click a button
+document.getElementById("button-history").onclick = () => {
+  historyIsShowing = true;
+  updateHistoryDiv();
   document.getElementById("inspiration").style.display = "none";
   document.getElementById("button-history").style.display = "none";
 }
@@ -34,6 +52,10 @@ document.getElementById("button-history").onclick = () => {
 // connect to API by axios and show response by click on button
 document.getElementById("submit").onclick = () => {
   let text = document.getElementById("input").value;
+  if (text !== "" && !isTextInHistory(text)) {
+    saveToHistory(text);
+    updateHistoryDiv();
+  }
   document.getElementById("response").innerHTML = "";
   document.getElementById("inspiration").innerHTML = "";
   axios.get(`https://cors-anywhere.herokuapp.com/http://yoda-api.appspot.com/api/v1/yodish?text=${text}`)
@@ -48,7 +70,7 @@ document.getElementById("submit").onclick = () => {
   })
 }
 
-// show response by click on quotes
+// show response by click on the quotes
 let quotes = document.getElementsByClassName("main__quotes__container__example")
 for (let i = 0; i < quotes.length; i++) {
   quotes.item(i).onclick = elem => {
@@ -57,20 +79,20 @@ for (let i = 0; i < quotes.length; i++) {
   }
 }
 
-  // Sets the number of stars we wish to display
+// sets the number of stars
 const numStars = 100;
 
-// For every star we want to display
+// for every star we want to display
 for (let i = 0; i < numStars; i++) {
   let star = document.createElement("div");  
   star.className = "star";
-  var xy = getRandomPosition();
+  let xy = getRandomPosition();
   star.style.top = xy[0] + 'px';
   star.style.left = xy[1] + 'px';
   document.body.append(star);
 }
 
-// Gets random x, y values based on the size of the container
+// get random x, y values based on the size of the screen
 function getRandomPosition() {  
   var y = window.innerWidth;
   var x = window.innerHeight;
@@ -78,4 +100,3 @@ function getRandomPosition() {
   var randomY = Math.floor(Math.random()*y);
   return [randomX,randomY];
 }
-

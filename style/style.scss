@@ -45,6 +45,7 @@ body {
   background: transparent;
   width: 33%;
   color: #999998;
+  outline: none;
 }
 
 .header__form__button {
@@ -93,6 +94,7 @@ body {
 
 .main__quotes__container__example {
   padding: 30px;
+  cursor: pointer;
 }
 
 .star {
