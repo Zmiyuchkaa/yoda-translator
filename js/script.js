@@ -1,18 +1,5 @@
 // created a key-value in local storage, display it on screen by click a button
 document.getElementById("button-history").onclick = () => {
-  let text = document.getElementById("input").value;
-  if (text != "") {
-    let historyRequests = JSON.parse(localStorage.getItem('history')); 
-    if (historyRequests === null) {
-      localStorage.setItem('history', JSON.stringify([text]))
-    } else { 
-        if (historyRequests.length > 5) {
-          historyRequests.shift();
-        }
-      }
-      historyRequests.push(text);
-      localStorage.setItem('history', JSON.stringify(historyRequests));
-  }
   let historyDiv = document.getElementById('history');  
   let historyArray = JSON.parse(localStorage.getItem('history'))
   historyArray.forEach(story => {
@@ -25,6 +12,36 @@ document.getElementById("button-history").onclick = () => {
   document.getElementById("button-history").style.display = "none";
 }
 
+// update story at the screen any time user search
+function updateHistoryDiv() {
+  let historyDiv = document.getElementById('history'); 
+  historyDiv.innerHTML = ""; 
+  let historyArray = JSON.parse(localStorage.getItem('history'))
+  historyArray.forEach(story => {
+    let historyP = document.createElement('span');    
+    historyP.innerHTML = story;
+    historyP.className = 'main__history-container__history-p'
+    historyDiv.appendChild(historyP);
+  })
+}
+
+// save to history any time you use search
+function saveToHistory() {
+let text = document.getElementById("input").value;
+  if (text != "") {
+    let historyRequests = JSON.parse(localStorage.getItem('history')); 
+    if (historyRequests === null) {
+      localStorage.setItem('history', JSON.stringify([text]))
+    } else { 
+        if (historyRequests.length > 5) {
+          historyRequests.shift();
+        }
+      }
+      historyRequests.push(text);
+      localStorage.setItem('history', JSON.stringify(historyRequests));
+  }
+}
+
 // connect to API by axios and show response by click on button
 document.getElementById("submit").onclick = () => {
   let text = document.getElementById("input").value;
@@ -32,6 +49,10 @@ document.getElementById("submit").onclick = () => {
   document.getElementById("inspiration").innerHTML = "";
   axios.get(`https://cors-anywhere.herokuapp.com/http://yoda-api.appspot.com/api/v1/yodish?text=${text}`)
   .then(response => {
+    let historyDiv = document.getElementById('history'); 
+    historyDiv.innerHTML = ""; 
+    saveToHistory();
+    document.getElementById("button-history").style.display = "inline"
     let div = document.getElementById('response');
     let createResponse = document.createElement("h2")
     let createTitle = document.createElement("p");
@@ -46,6 +67,10 @@ document.getElementById("submit").onclick = () => {
 let quotes = document.getElementsByClassName("main__quotes__container__example")
 for (let i = 0; i < quotes.length; i++) {
   quotes.item(i).onclick = elem => {
+    let historyDiv = document.getElementById('history'); 
+    historyDiv.innerHTML = ""; 
+    saveToHistory();
+    document.getElementById("button-history").style.display = "inline"
     document.getElementById("input").value = elem.target.innerHTML
     document.getElementById("submit").click();
   }
@@ -72,4 +97,3 @@ function getRandomPosition() {
   var randomY = Math.floor(Math.random()*y);
   return [randomX,randomY];
 }
-
