@@ -2,7 +2,7 @@ $yellow: #c3b935;
 $grey: #222222;
 $light-yellow: #d8d5ab;
 
-
+// размер spaceship и breakpoint нижнего блока
 body {
   background-color: black;
   color:yellow;
@@ -20,7 +20,8 @@ body {
   animation: title infinite 2s;
   animation-direction: alternate-reverse;
   animation-timing-function: ease-in;
-  height: 120px;
+  max-width: 50%;
+  height: auto;
 }
 
 .header__button {
@@ -28,7 +29,7 @@ body {
     color: $yellow;
     border: 1px solid $yellow;
     height: 40px;
-    width: 250px;
+    max-width: 250px;
   &:hover {
     border-color: $light-yellow;
     color: $light-yellow;
@@ -43,7 +44,7 @@ body {
   border: none;
   border-bottom: 1px solid $yellow;
   background: transparent;
-  width: 33%;
+  max-width: 33%;
   color: #999998;
   outline: none;
 }
@@ -62,7 +63,7 @@ body {
 
 .main__history-container {
   height: 200px;
-  width: 70%;
+  max-width: 70%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -86,15 +87,43 @@ body {
 }
 
 .main__quotes__container {
-  width: 90%;
+  max-width: 90%;
   list-style-type: none;
   display: flex;
   justify-content: center;
 }
 
+@media all and (max-width: 800px) and (min-width: 200px) {
+  .header, .main {
+    height: 100px;
+    font-size: 10px;
+  }
+  form {
+    padding-top: 50px;
+  }
+  .main__quotes__container {
+    display: inline-block;
+  }
+  .main__quotes__container__example {
+    padding: 10px; 
+  }
+  .main__history-container__history-p {
+    display: block;
+    font-size: 10px;
+    padding: 30px 7px;
+  }
+  #h3 {
+    font-size: 10px;
+  }
+  .main__spaceship__image {
+    display: none;
+  }
+}
 .main__quotes__container__example {
   padding: 30px;
   cursor: pointer;
+  max-width: 80%;
+  height: auto;
 }
 
 .star {
@@ -105,8 +134,8 @@ body {
 }
 
 .main__spaceship__image {
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  height: auto;
   position: absolute;
   z-index: 1;
   animation: spaceship infinite 10s;
@@ -126,3 +155,4 @@ body {
   0% {top:0px}
   100% {top: 10px}
 }
+
