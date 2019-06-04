@@ -27,19 +27,19 @@ function updateHistoryDiv() {
 
 // save to history any time you use search
 function saveToHistory() {
-let text = document.getElementById("input").value;
-  if (text != "") {
-    let historyRequests = JSON.parse(localStorage.getItem('history')); 
-    if (historyRequests === null) {
-      localStorage.setItem('history', JSON.stringify([text]))
-    } else { 
-        if (historyRequests.length > 5) {
-          historyRequests.shift();
+  let text = document.getElementById("input").value;
+    if (text != "") {
+      let historyRequests = JSON.parse(localStorage.getItem('history')); 
+      if (historyRequests === null) {
+        localStorage.setItem('history', JSON.stringify([text]))
+      } else { 
+          if (historyRequests.length > 5) {
+            historyRequests.shift();
+          }
         }
-      }
-      historyRequests.push(text);
-      localStorage.setItem('history', JSON.stringify(historyRequests));
-  }
+        historyRequests.push(text);
+        localStorage.setItem('history', JSON.stringify(historyRequests));
+    }
 }
 
 // connect to API by axios and show response by click on button
@@ -64,9 +64,9 @@ document.getElementById("submit").onclick = () => {
 }
 
 // show response by click on quotes
-let quotes = document.getElementsByClassName("main__quotes__container__example")
-for (let i = 0; i < quotes.length; i++) {
-  quotes.item(i).onclick = elem => {
+let quotes = document.getElementsByClassName("main__quotes__container__example");
+Array.from(quotes).forEach(e => {
+  e.onclick = elem => {
     let historyDiv = document.getElementById('history'); 
     historyDiv.innerHTML = ""; 
     saveToHistory();
@@ -74,7 +74,8 @@ for (let i = 0; i < quotes.length; i++) {
     document.getElementById("input").value = elem.target.innerHTML
     document.getElementById("submit").click();
   }
-}
+});
+
 
   // set the number of stars 
 const numStars = 100;
